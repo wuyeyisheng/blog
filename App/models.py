@@ -8,6 +8,7 @@ class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(30), unique=True)
+    password = db.Column(db.String(255))
     info = db.Column(db.TEXT)
     time = db.Column(db.DateTime)
     is_super = db.Column(db.Boolean)
@@ -17,7 +18,9 @@ class User(db.Model):
 class Ariticle(db.Model):
     # 文章表
     __tablename__ = 'article'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = 
+
 
 
 
