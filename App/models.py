@@ -19,7 +19,7 @@ class Ariticle(db.Model):
     # 文章表
     __tablename__ = 'article'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = 
+    name =
 
 
 
