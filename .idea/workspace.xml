@@ -27,6 +27,7 @@
       <list>
         <option value="Flask Main" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -36,23 +37,25 @@
   <component name="ProjectId" id="1PxXD9WB3WTWW5Ob6XXUgRKnQXJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/App/templates/blog" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ijeff\Desktop\Python1904\Flask\Day02\code\ModelPro1\App" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pqw\Desktop\FlaskBlogPro\App\templates\blog" />
+      <recent name="C:\Users\pqw\Desktop\FlaskBlogPro\App\static\blog" />
       <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\static\admin" />
       <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\templates\admin" />
       <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\static\blog" />
-      <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\templates\blog" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ijeff\Desktop\Python1904\Flask\Day02\code\ModelPro1\App" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -98,6 +101,7 @@
       <workItem from="1566288325412" duration="239000" />
       <workItem from="1566810598502" duration="1731000" />
       <workItem from="1566816600102" duration="5776000" />
+      <workItem from="1566867033589" duration="26957000" />
     </task>
     <servers />
   </component>
@@ -109,7 +113,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
