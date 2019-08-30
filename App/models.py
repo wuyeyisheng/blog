@@ -22,6 +22,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(255))
+    introduction = db.Column(db.String(255))
     info = db.Column(db.TEXT)
     icon = db.Column(db.String(255))  # 用户的图像。
     time = db.Column(db.DateTime)
@@ -46,6 +47,20 @@ class AriticleType(db.Model):
 
     articles = db.relationship('Article', backref='ariticletype', lazy=True)
 
+    def to_dict(self):
+        '''将对象转换为字典数据'''
+        user_dict = {
+            "id": self.id,
+            "name": self.name,
+            "othername": self.othername,
+            "father_type": self.father_type,
+            "time": self.time,
+            "articles": [article.to_dict() for article in self.articles]
+        }
+        return user_dict
+
+
+#
 
 class Article(db.Model):
     '''
@@ -58,14 +73,31 @@ class Article(db.Model):
     title = db.Column(db.String(50))
     text = db.Column(db.TEXT)
     time = db.Column(db.DateTime)
-    picture = db.Column(db.String(255))
-    num = db.Column(db.Integer) # 点击量
-    introduce = db.Column(db.String(255)) # 简介
+    tag = db.Column(db.String(255))  # 标签
+    picture = db.Column(db.String(2550))
+    num = db.Column(db.Integer)  # 点击量
+    introduce = db.Column(db.String(255))  # 简介
     type = db.Column(db.Integer, db.ForeignKey(AriticleType.id))
 
     is_recommand = db.Column(db.Boolean)
     # 评论的字段
     commend = db.relationship('Commend', backref='article', lazy=True)
+
+    def to_dict(self):
+        '''将对象转换为字典数据'''
+        user_dict = {
+            "id": self.id,
+            "userid": self.userid,
+            "title": self.title,
+            "text": self.text,
+            "time": self.time,
+            "picture": self.picture,
+            "num": self.num,
+            "introduce": self.introduce,
+            "type": self.type,
+            "tag": self.tag,
+        }
+        return user_dict
 
 
 class Photo(db.Model):
@@ -74,6 +106,7 @@ class Photo(db.Model):
     '''
     __tablename__ = 'photo'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(50))
     info = db.Column(db.TEXT)
     picture = db.Column(db.String(255))
     time = db.Column(db.DateTime)

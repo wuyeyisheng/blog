@@ -28,6 +28,7 @@ $(document).ready(function () {
         // Scrolling down
         if (new_scroll_position < last_scroll_position && last_scroll_position > 80) {
             // header.removeClass('slideDown').addClass('slideUp');
+
             header.classList.remove("slideDown");
             header.classList.add("slideUp");
 

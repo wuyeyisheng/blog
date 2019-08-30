@@ -16,12 +16,13 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!--[if lt IE 9]>
     <script src="js/modernizr.js"></script>
     <![endif]-->
 </head>
-<body >
+<body>
 <header class="header-navigation" id="header">
     <nav>
         <div class="logo"><a href="/">杨青个人博客</a></div>
@@ -37,13 +38,13 @@
     </nav>
 </header>
 <article id="app">
-    <aside>
+    <aside id="index-aside">
         <div class="l_box" id="stickMe">
             <div class="about_me">
                 <h2>关于我</h2>
                 <ul>
                     <i><img src="{{ user.icon }}"></i>
-                    <p><b>{{ user.name }}</b>{{ user.info }}</p>
+                    <p><b>{{ user.name }}</b>{{ user.introduction }}</p>
 
 
                 </ul>
@@ -70,13 +71,15 @@
                     <input name="Submit" class="input_submit" value="搜索" type="submit">
                 </form>
             </div>
-            <div class="fenlei">
+            <div class="fenlei" r_box>
 
                 <h2>文章分类</h2>
                 <ul>
-                    {% for type in types %}
-                        <li @click="selectType" typeid="{{ type.id }}"><a href="">{{ type.name }} ( {{ type.articles | length }} )</a></li>
-                    {% endfor %}
+
+                    <li v-for="item in types" :key="item.id">
+                        <a href="javascript:;" @click="itemize(item.id)">{[ item.name ]} ( {[ item.articles.length
+                            ]})</a>
+                    </li>
 
                 </ul>
             </div>
@@ -108,14 +111,11 @@
         </div>
     </aside>
     <div class="r_box">
-        {% for art in arts %}
-            <li>
-
-                <i><a href="{{ url_for('blog.info', id=art.id) }}"><img src="{{ art.picture }}" alt="百度搜索博客wuye24h"></a></i>
-                <h3><a href="{{ url_for('blog.info', id=art.id) }}">{{ art.title }}</a></h3>
-                <p>{{ art.introduce }}</p>
-            </li>
-        {% endfor %}
+        <li v-for="art in arts">
+            <i><a :href="'/info/'+art.id"><img :src="art.picture" alt="百度搜索博客wuye24h">{[ art.title ]}</a></i>
+            <h3><a :href="'/info/'+art.id">{[ art.title ]}</a></h3>
+            <p>{[ art.introduce ]}</p>
+        </li>
 
     </div>
 </article>
@@ -128,16 +128,41 @@
 
 <script>
     new Vue({
-        el:"#app",
-        data:{
+        delimiters: ['{[', ']}'],
+        el: "#app",
+        data: {
+            arts: [],
+            types: [],
+        },
+        created() {
+            axios.get('/articleType/')
+                .then((res) => {
+                    this.arts = res.data.arts;
+                    this.types = res.data.types;
 
+                    console.log(this.arts)
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
-        created(){
-            console.log("钩子函数的执行过程")
-        },
-        methods:{
-            selectType(){
-                alert("hello")
+        methods: {
+            itemize(id) {
+                axios.get("/type/" + id)
+                    .then((res) => {
+                        $("#index-aside").css({
+                            "position": "relative",
+                            "left": "auto",
+                            "width": "1000px"
+                        });
+                        this.arts = res.data.articles;
+                        console.log(res.data.articles)
+
+                    })
+                    .catch((err) => {
+
+                    })
             }
         }
     })
