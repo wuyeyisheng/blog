@@ -1,2 +1,1 @@
-# blog123
-Flask的blog
+基于Vue、Flask搭载的博客项目
