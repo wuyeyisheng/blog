@@ -27,27 +27,36 @@
       <list>
         <option value="Flask Main" />
         <option value="Python Script" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1PxXD9WB3WTWW5Ob6XXUgRKnQXJ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/App/templates/blog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tornado/Day04/code/TuringPro" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ijeff\Desktop\Python1904\Flask\Day02\code\ModelPro1\App" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pqw\Desktop\FlaskBlogPro\App\templates\blog" />
+      <recent name="C:\Users\pqw\Desktop\FlaskBlogPro\App\static\blog" />
       <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\static\admin" />
       <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\templates\admin" />
       <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\static\blog" />
-      <recent name="C:\Users\ijeff\Desktop\Python1904\Tornado\Day01\code\FlaskBlogPro\App\templates\blog" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ijeff\Desktop\Python1904\Flask\Day02\code\ModelPro1\App" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -92,11 +101,37 @@
       <workItem from="1566283893520" duration="3640000" />
       <workItem from="1566288325412" duration="239000" />
       <workItem from="1566810598502" duration="1731000" />
-      <workItem from="1566816600102" duration="3772000" />
+      <workItem from="1566816600102" duration="5776000" />
+      <workItem from="1566867033589" duration="67247000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/App/templates/admin/article.html</url>
+          <line>32</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
