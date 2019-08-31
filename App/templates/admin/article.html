@@ -111,8 +111,10 @@
                                 </div>
                             </div>
                             <ul class="pagination pagenav">
+
                                 {% if pgs.has_prev %}
-                                    <li><a href="{{ url_for('admin.amdin_article') }}?pg={{ pgs.prev_num }}" aria-label="Previous"> <span
+                                    <li><a href="{{ url_for('admin.amdin_article') }}?pg={{ pgs.prev_num }}"
+                                           aria-label="Previous"> <span
                                             aria-hidden="true">&laquo;</span>
                                     </a></li>
                                 {% else %}
@@ -121,20 +123,46 @@
                                     </a></li>
                                 {% endif %}
 
-                                {% for pg in pgs.iter_pages() %}
-                                    {% if pg == pgs.page %}
-                                        <li class="active"><a href="{{ url_for('admin.amdin_article') }}?pg={{ pg }}">{{ pg }}</a></li>
-                                    {% else %}
-                                        <li><a href="{{ url_for('admin.amdin_article') }}?pg={{ pg }}">{{ pg }}</a></li>
-                                    {% endif %}
+                                {# 大于6条数据的时候，开始影藏部分分页。 #}
+{#                                {% if pgs.pages > 6 %}#}
+{#                                    {{ pgs.pages }}#}
+{#                                    {% for pg in pgs.iter_pages() %}#}
+{#                                            <li><a#}
+{#                                                    href="{{ url_for('admin.amdin_article') }}?pg={{ pg }}">{{ pg }}</a>#}
+{#                                            </li>#}
+{#                                        {% if pg == pgs.pages - 2 %}#}
+{#                                            <li><a href="#">...</a></li>#}
+{#                                        {% endif %}#}
+{#                                    {% endfor %}#}
+{##}
+{##}
+{#                                {% else %}#}
 
-                                {% endfor %}
+                                    {% for pg in pgs.iter_pages() %}
+                                        {% if pg == pgs.page %}
+                                            <li class="active"><a
+                                                    href="{{ url_for('admin.amdin_article') }}?pg={{ pg }}">{{ pg }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li><a href="{{ url_for('admin.amdin_article') }}?pg={{ pg }}">{{ pg }}</a>
+                                            </li>
+                                        {% endif %}
+
+                                    {% endfor %}
+
+
+{#                                {% endif %}#}
+
 
                                 {% if pgs.has_next %}
-                                    <li ><a href="{{ url_for('admin.amdin_article') }}?pg={{ pgs.next_num }}" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a></li>
+                                    <li><a href="{{ url_for('admin.amdin_article') }}?pg={{ pgs.next_num }}"
+                                           aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a></li>
                                 {% else %}
-                                    <li class="disabled"><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a></li>
+                                    <li class="disabled"><a href="#" aria-label="Next"> <span
+                                            aria-hidden="true">&raquo;</span>
+                                    </a></li>
                                 {% endif %}
+
 
                             </ul>
                         </nav>

@@ -5,128 +5,265 @@
 {% endblock %}
 
 {% block content %}
-    <header class="header-navigation" id="header">
-        <nav>
-            <div class="logo"><a href="/">杨青个人博客</a></div>
-            <h2 id="mnavh"><span class="navicon"></span></h2>
-            <ul id="starlist">
-                <li><a href="index.html">网站首页</a></li>
-                <li><a href="share.html">我的相册</a></li>
-                <li><a href="about.html">关于我</a></li>
-                <li><a href="gbook.html">留言</a></li>
-                <li><a href="info.html" id="selected">内容页</a></li>
-                <li><a href="infopic.html">内容页</a></li>
-            </ul>
-        </nav>
-    </header>
+
+
+
     <article>
-        <aside>
-            <div class="l_box">
-                <div class="search">
-                    <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-                        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词"
-                               style="color: rgb(153, 153, 153);"
-                               onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}"
-                               onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
-                        <input name="show" value="title" type="hidden">
-                        <input name="tempid" value="1" type="hidden">
-                        <input name="tbname" value="news" type="hidden">
-                        <input name="Submit" class="input_submit" value="搜索" type="submit">
-                    </form>
-                </div>
-
-                <div class="fenlei">
-                    <h2>文章分类</h2>
-                    <ul>
-                        {% for type in types %}
-                            <li><a href="">{{ type.name }} ( {{ type.articles | length }} )</a></li>
-                        {% endfor %}
-
-
-                    </ul>
-                </div>
-                <div class="tuijian">
-                    <h2>站长推荐</h2>
-                    <ul>
-                        {% for art in arts %}
-                            {% if art.is_recommand %}
-                                <li><a href="/">{{ art.title }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-
-
-                    </ul>
-                </div>
-                <div class="tuijian">
-                    <h2>点击排行</h2>
-                    <ul>
-                        <li><a href="/">你是什么人便会遇上什么人</a></li>
-                        <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-                        <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-                        <li><a href="/">个人博客模板《绅士》后台管理</a></li>
-                        <li><a href="/">你是什么人便会遇上什么人</a></li>
-                        <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-                        <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-                        <li><a href="/">个人博客模板《绅士》后台管理</a></li>
-                    </ul>
-                </div>
-                <div class="cloud">
-                    <h2>标签云</h2>
-                    <ul>
-                        <a href="/">陌上花开</a> <a href="/">校园生活</a> <a href="/">html5</a> <a href="/">SumSung</a> <a
-                            href="/">青春</a> <a href="/">温暖</a> <a href="/">阳光</a> <a href="/">三星</a><a href="/">索尼</a>
-                        <a href="/">华维荣耀</a> <a href="/">三星</a> <a href="/">索尼</a>
-                    </ul>
-                </div>
-                <div class="guanzhu">
-                    <h2>关注我 么么哒</h2>
-                    <ul>
-                        <img src="images/wx.jpg">
-                    </ul>
-                </div>
+        <aside class="l_box">
+            <div class="search">
+                <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
+                    <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词"
+                           style="color: rgb(153, 153, 153);"
+                           onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}"
+                           onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
+                    <input name="show" value="title" type="hidden">
+                    <input name="tempid" value="1" type="hidden">
+                    <input name="tbname" value="news" type="hidden">
+                    <input name="Submit" class="input_submit" value="搜索" type="submit">
+                </form>
             </div>
-        </aside>
-        <div class="infosbox">
-            <div class="newsview">
-                <h3 class="news_title">{{ article.title }}</h3>
-                <div class="bloginfo">
-                    <ul>
-                        <li class="author">作者：<a href="/">{{ article.ariticle_user.name }}</a></li>
-                        <li class="lmname"><a href="/">{{ article.ariticletype.name }}</a></li>
-                        <li class="timer">时间：{{ article.time }}</li>
-                        <li class="view">{{ article.num }}人已阅读</li>
-                    </ul>
-                </div>
-                <div class="tags"><a href="/" target="_blank">个人博客</a> &nbsp; <a href="/" target="_blank">小世界</a></div>
-                <div class="news_about"><strong>简介</strong>
-                    {{ article.introduce }}
-                </div>
-
-                {{ article.text | safe }}
-
-
-            </div>
-
-
-            <div class="share">
-                <p class="diggit"><a
-                        href="JavaScript:makeRequest('/e/public/digg/?classid=3&amp;id=19&amp;dotop=1&amp;doajax=1&amp;ajaxarea=diggnum','EchoReturnedText','GET','');">
-                    很赞哦！ </a>(<b id="diggnum">
-                    <script type="text/javascript" src="/e/public/ViewClick/?classid=2&id=20&down=5"></script>
-                    13</b>)
-                </p>
-            </div>
-            <div class="nextinfo">
-                <p>上一篇：<a href="/news/life/2018-03-13/804.html">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></p>
-                <p>下一篇：<a href="/news/life/">返回列表</a></p>
-            </div>
-            <div class="news_pl">
-                <h2>文章评论</h2>
+            <div class="fenlei">
+                <h2>文章分类</h2>
                 <ul>
-                    <div class="gbko"></div>
+                    {% for type in types %}
+                        <li><a href="">{{ type.name }} ( {{ type.articles | length }} )</a></li>
+                    {% endfor %}
+
+
                 </ul>
             </div>
-        </div>
+            <div class="tuijian">
+                <h2>站长推荐</h2>
+                <ul>
+                    {% for art in arts %}
+                        {% if art.is_recommand %}
+                            <li><a href="/">{{ art.title }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+
+                </ul>
+            </div>
+            <div class="tuijian">
+                <h2>点击排行</h2>
+                <ul>
+                    <li><a href="/">你是什么人便会遇上什么人</a></li>
+                    <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
+                    <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
+                    <li><a href="/">个人博客模板《绅士》后台管理</a></li>
+                    <li><a href="/">你是什么人便会遇上什么人</a></li>
+                    <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
+                    <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
+                    <li><a href="/">个人博客模板《绅士》后台管理</a></li>
+                </ul>
+            </div>
+            <div class="cloud">
+                <h2>标签云</h2>
+                <ul>
+                    {% for tag in tags %}
+                        <a href="javascript:;">{{ tag }}</a>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="guanzhu">
+                <h2>关注我 么么哒</h2>
+                <ul>
+                    <img src="/static/blog/images/wx.jpg">
+                </ul>
+            </div>
+        </aside>
+        <main>
+            <div class="infosbox">
+                <div class="newsview">
+                    <h3 class="news_title">{{ article.title }}</h3>
+                    <div class="bloginfo">
+                        <ul>
+                            <li class="author">作者：<a href="/">{{ article.ariticle_user.name }}</a></li>
+
+                            <li class="timer">时间：{{ article.time }}</li>
+                            <li class="view">{{ article.visit }}人已阅读</li>
+                        </ul>
+                    </div>
+                    <div class="tags">
+
+                        {% for typecls in typeclass %}
+                                   <a href="/" target="_blank">{{ typecls }}</a> &nbsp;
+                        {% endfor %}
+
+
+
+                    </div>
+                    <div class="news_about"><strong>简介</strong>
+                        {{ article.introduce }}
+                    </div>
+
+                    {{ article.text | safe }}
+
+
+                </div>
+
+
+                <div class="share">
+                    <p class="diggit" id="thumbs-up"><a
+                            href="JavaScript:;">
+                        很赞哦！ </a>(<b id="diggnum">
+                        {{ article.num }}</b>)
+                    </p>
+
+                    <script>
+
+
+                        $(function () {
+                            $("#thumbs-up").click(function () {
+                                $.ajax({
+                                    url: "",
+                                    method: "PUT",
+                                    data: {
+                                        "id":{{ article.id }}
+                                    },
+                                    success(data) {
+                                        if (data.code == "1") {
+                                            $("#thumbs-up").find("b").html(data.art_num);
+                                        } else if (data.code == "2") {
+                                            alert("不要贪杯哦！！！")
+                                        } else if (data.code == "0") {
+                                            alert("系统错误！！！")
+                                        }
+                                    }
+                                })
+                            })
+                        })
+
+                    </script>
+
+                </div>
+                <div class="nextinfo">
+
+                    <p>上一篇：
+
+                        {% if prvart == None %}
+                            <a href="{{ url_for('blog.home') }}">返回首页</a>                        {% else %}
+                            <a href="{{ url_for('blog.info', id=prvart.id) }}">{{ prvart.title }}</a></p>
+                        {% endif %}
+                    <p>下一篇：
+                        {% if nextart == None %}
+                            <a href="{{ url_for('blog.home') }}">返回首页</a>
+                        {% else %}
+                            <a href="{{ url_for('blog.info', id=nextart.id) }}">{{ nextart.title }}</a>
+                        {% endif %}
+                    </p>
+
+                </div>
+                <div class="news_pl">
+                    <h2>文章评论</h2>
+                    <div class="gbko">
+                        <script src="/e/pl/more/?classid=77&amp;id=106&amp;num=20"></script>
+                        {% for command in commands %}
+                            <div class="fb">
+                                <ul>
+                                    <p class="fbtime"><span>{{ command.time }}</span>{{ command.comment_user.name }}</p>
+                                    <p class="fbinfo">{{ command.info }}</p>
+                                </ul>
+                            </div>
+                        {% endfor %}
+
+
+                        <script>
+                            function CheckPl(obj) {
+                                if (obj.saytext.value == "") {
+                                    alert("您没什么话要说吗？");
+                                    obj.saytext.focus();
+                                    return false;
+                                }
+                                return true;
+                            }
+                        </script>
+                        <form action="" method="post" name="saypl" id="saypl"
+                              onsubmit="return CheckPl(document.saypl)">
+                            <div id="plpost">
+                                <p class="saying"><span><a href="/e/pl/?classid=77&amp;id=106">共有<script
+                                        type="text/javascript"
+                                        src="/e/public/ViewClick/?classid=77&amp;id=106&amp;down=2"></script>2条评论</a></span>来说两句吧...
+                                </p>
+                                <p class="yname"><span>用户名:</span>
+                                    <input name="username" type="text" class="inputText" id="username" value=""
+                                           size="16">
+                                </p>
+                                <p class="yzm"><span>验证码:</span>
+                                    <input name="key" type="text" id="yzminput" class="inputText" size="16">
+                                    <span id="yzm"
+                                          style="padding-left:10px;border: 1px solid #ccc;text-align: center;font-size: 14px;cursor: pointer;letter-spacing: 3px;">点击获取验证码</span>
+                                </p>
+
+
+                                <input name="nomember" type="hidden" id="nomember" value="{ article.id}}"
+                                       checked="checked">
+                                <textarea name="saytext" rows="6" id="saytext"></textarea>
+                                <input name="imageField" type="submit" value="提交">
+
+                                <script>
+                                    $(function () {
+                                        let yzmnum = "";
+                                        $("#yzm").click(function () {
+
+                                            $.get("/yzm/", function (data) {
+                                                console.log(data)
+                                                if (data.code == 1) {
+                                                    $("#yzm").html(data.yzm)
+                                                    yzmnum = data.yzm
+                                                }
+
+                                            })
+
+                                        });
+                                        $("#saytext").next("input").click(function () {
+
+
+                                            if ($("#yzminput").val() == "") {
+                                                alert("验证码不能呢为空：")
+                                                return false
+                                            }
+
+                                            console.log("---------" + yzmnum)
+                                            console.log($("#yzminput").val(), yzmnum)
+                                            if ($("#yzminput").val() != yzmnum) {
+                                                alert("输入的验证码有误：")
+                                                return false
+                                            }
+
+
+                                            data = {
+                                                "artid": {{ article.id }},
+                                                "name": $("#username").val(),
+                                                "info": $("#saytext").val(),
+                                            };
+
+
+                                            $.post("", data, function (data) {
+                                                if (data.code == "1") {
+                                                    alert("插入成功");
+                                                    location.reload()
+                                                } else if (data.code == "2") {
+                                                    alert("系统错误。")
+                                                }
+                                            });
+                                            return false
+                                        })
+
+                                    })
+
+
+                                </script>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </main>
     </article>
     <footer>
         <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>

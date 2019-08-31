@@ -28,96 +28,103 @@
         <div class="logo"><a href="/">杨青个人博客</a></div>
         <h2 id="mnavh"><span class="navicon"></span></h2>
         <ul id="starlist">
-            <li><a href="/" id="selected">网站首页</a></li>
-            <li><a href="{{ url_for('blog.share') }}">我的相册</a></li>
+            <li><a href="/" id="selected">首页</a></li>
+            <li><a href="{{ url_for('blog.share') }}">相册</a></li>
             <li><a href="{{ url_for('blog.about') }}">关于我</a></li>
             <li><a href="{{ url_for('blog.gbook') }}">留言</a></li>
-            <li><a href="info.html">文章内容页</a></li>
-            <li><a href="infopic.html">图片内容页</a></li>
         </ul>
     </nav>
 </header>
 <article id="app">
-    <aside id="index-aside">
-        <div class="l_box" id="stickMe">
-            <div class="about_me">
-                <h2>关于我</h2>
-                <ul>
-                    <i><img src="{{ user.icon }}"></i>
-                    <p><b>{{ user.name }}</b>{{ user.introduction }}</p>
 
 
-                </ul>
-            </div>
-            <div class="wdxc">
-                <h2>我的相册</h2>
-                <ul>
-                    {% for ablum in ablums %}
-                        <li><a href=""><img src="{{ ablum.picture }}" alt=""></a></li>
-                    {% endfor %}
+    <aside class="l_box">
+        <div class="about_me">
+            <h2>关于我</h2>
+            <ul>
+                <i><img src="{{ user.icon }}"></i>
+                <p><b>{{ user.name }}</b>{{ user.introduction }}</p>
 
 
-                </ul>
-            </div>
-            <div class="search">
-                <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-                    <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词"
-                           style="color: rgb(153, 153, 153);"
-                           onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}"
-                           onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
-                    <input name="show" value="title" type="hidden">
-                    <input name="tempid" value="1" type="hidden">
-                    <input name="tbname" value="news" type="hidden">
-                    <input name="Submit" class="input_submit" value="搜索" type="submit">
-                </form>
-            </div>
-            <div class="fenlei" r_box>
-
-                <h2>文章分类</h2>
-                <ul>
-
-                    <li v-for="item in types" :key="item.id">
-                        <a href="javascript:;" @click="itemize(item.id)">{[ item.name ]} ( {[ item.articles.length
-                            ]})</a>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="tuijian">
-                <h2>站长推荐</h2>
-                <ul>
-                    {% for art in arts %}
-                        {% if art.is_recommand %}
-                            <li><a href="/">{{ art.title }}</a></li>
-                        {% endif %}
-                    {% endfor %}
+            </ul>
+        </div>
+        <div class="wdxc">
+            <h2>我的相册</h2>
+            <ul>
+                {% for ablum in ablums %}
+                    <li><a href=""><img src="{{ ablum.picture }}" alt=""></a></li>
+                {% endfor %}
 
 
-                </ul>
-            </div>
-            <div class="links">
-                <h2>友情链接</h2>
-                <ul>
-                    <a href="https://blog.csdn.net/wuye1015">个人博客</a> <a
-                        href="https://blog.csdn.net/wuye1015">wuye24h博客</a>
-                </ul>
-            </div>
-            <div class="guanzhu">
-                <h2>关注我 么么哒</h2>
-                <ul>
-                    <img src="/static/blog/images/wx.jpg">
-                </ul>
-            </div>
+            </ul>
+        </div>
+        <div class="search">
+
+            <input v-model="search_key" @keyup.enter="search" name="keyboard" id="keyboard" class="input_text" value="请输入关键字词"
+                   placeholder="请输入关键字词" type="text">
+
+
+            <input name="Submit" @click="search" class="input_submit" value="搜索" type="submit">
+
+        </div>
+
+        <div class="fenlei" r_box>
+
+            <h2>文章分类</h2>
+            <ul>
+
+                <li v-for="item in types" :key="item.id">
+                    <a href="javascript:;" @click="itemize(item.id)">{[ item.name ]} ( {[ item.articles.length
+                        ]})</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="tuijian">
+            <h2>站长推荐</h2>
+            <ul>
+                {% for art in arts.arts %}
+                    {% if art.is_recommand %}
+                        <li><a href="/">{{ art.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+
+            </ul>
+        </div>
+        <div class="links">
+            <h2>友情链接</h2>
+            <ul>
+                <a href="https://blog.csdn.net/wuye1015">个人博客</a> <a
+                    href="https://blog.csdn.net/wuye1015">wuye24h博客</a>
+            </ul>
+        </div>
+        <div class="guanzhu">
+            <h2>关注我 么么哒</h2>
+            <ul>
+                <img src="/static/blog/images/wx.jpg">
+            </ul>
         </div>
     </aside>
-    <div class="r_box">
+
+    <main class="r_box">
+
         <li v-for="art in arts">
             <i><a :href="'/info/'+art.id"><img :src="art.picture" alt="百度搜索博客wuye24h">{[ art.title ]}</a></i>
-            <h3><a :href="'/info/'+art.id">{[ art.title ]}</a></h3>
+            <h3>
+
+
+                <span v-if="art.is_recommand" style="color: red">
+                    [ 顶 ]
+                </span>
+                
+                <a :href="'/info/'+art.id">{[ art.title ]}</a></h3>
             <p>{[ art.introduce ]}</p>
         </li>
 
-    </div>
+    </main>
+
+
 </article>
 <footer>
     <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
@@ -133,13 +140,19 @@
         data: {
             arts: [],
             types: [],
+            pages: 1,
+            REQUIRE: true,
+            search_key: ""
         },
         created() {
-            axios.get('/articleType/')
+            console.log(this.arts)
+            axios.get('/articleType/', {
+                "pages": this.pages,
+                "per_page": 5
+            })
                 .then((res) => {
                     this.arts = res.data.arts;
                     this.types = res.data.types;
-
                     console.log(this.arts)
 
                 })
@@ -147,7 +160,28 @@
                     console.log(error);
                 });
         },
+        mounted() {
+            this.scroll(this.pages)
+        },
         methods: {
+            search() {
+                console.log("你點擊了")
+                if (this.search_key.length>=1) {
+                    axios.get('/searchkey/', {
+                        params: {
+                            "key": this.search_key
+                        }
+                    })
+                        .then((res) => {
+                            this.arts = res.data.arts;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+
+            },
+
             itemize(id) {
                 axios.get("/type/" + id)
                     .then((res) => {
@@ -163,11 +197,40 @@
                     .catch((err) => {
 
                     })
-            }
+            },
+            scroll(pages) {
+                let isLoading = false;
+                window.onscroll = () => {
+                    // 距离底部200px时加载一次
+                    let bottomOfWindow = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= 200;
+                    if (bottomOfWindow && isLoading == false && this.REQUIRE) {
+                        isLoading = true;
+                        this.pages += 1;
+                        axios.get('/articleType/', {
+                            params: {
+                                "pages": this.pages,
+                                "per_page": 5
+                            }
+                        })
+                            .then((res) => {
+                                if (res.data.arts.length != 0) {
+                                    this.arts = this.arts.concat(res.data.arts);
+                                } else {
+                                    this.REQUIRE = false;
+                                    alert("到底了！！，回去看看吧")
+                                }
+
+
+                                isLoading = false
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+
+                    }
+                }
+            },
         }
     })
 
 </script>
-
-
-</html>
