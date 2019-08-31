@@ -4,16 +4,6 @@ import datetime
 from .exts import db
 
 
-# commend = db.Table(
-#     'commend',
-#     db.Column(db.Integer, primary_key=True, autoincrement=True),
-#     db.Column('user_id', db.Integer, db.ForeignKey("User.id")),
-#     db.Column('article_id', db.Integer, db.ForeignKey("Article.id")),
-#     db.Column('info', db.TEXT, default=''),
-#     db.Column('time', db.DateTime, default=datetime.datetime.now())
-# )
-
-
 class User(db.Model):
     '''
         用户表
@@ -75,6 +65,8 @@ class Article(db.Model):
     time = db.Column(db.DateTime)
     tag = db.Column(db.String(255))  # 标签
     picture = db.Column(db.String(2550))
+    visit = db.Column(db.Integer)  # 访问量。
+
     num = db.Column(db.Integer)  # 点击量
     introduce = db.Column(db.String(255))  # 简介
     type = db.Column(db.Integer, db.ForeignKey(AriticleType.id))
@@ -96,8 +88,19 @@ class Article(db.Model):
             "introduce": self.introduce,
             "type": self.type,
             "tag": self.tag,
+            "is_recommand":self.is_recommand,
         }
         return user_dict
+
+
+class PhotoMain(db.Model):
+    __tablename = "photoinfo"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(50))
+    info = db.Column(db.TEXT)
+    picture = db.Column(db.String(255))
+    time = db.Column(db.DateTime)
+    photos = db.relationship('Photo', backref='photomain', lazy=True)
 
 
 class Photo(db.Model):
@@ -106,11 +109,8 @@ class Photo(db.Model):
     '''
     __tablename__ = 'photo'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(50))
-    info = db.Column(db.TEXT)
     picture = db.Column(db.String(255))
-    time = db.Column(db.DateTime)
-    type = db.Column(db.Integer)
+    type = db.Column(db.Integer, db.ForeignKey(PhotoMain.id))
 
 
 class Commend(db.Model):

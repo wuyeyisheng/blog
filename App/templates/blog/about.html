@@ -9,31 +9,17 @@
 {% endblock %}
 
 {% block content %}
-    <header class="header-navigation" id="header">
-        <nav>
-            <div class="logo"><a href="/">杨青个人博客</a></div>
-            <h2 id="mnavh"><span class="navicon"></span></h2>
-            <ul id="starlist">
-                <li><a href="index.html">网站首页</a></li>
-                <li><a href="share.html">我的相册</a></li>
-                <li><a href="about.html">关于我</a></li>
-                <li><a href="gbook.html">留言</a></li>
-                <li><a href="info.html">内容页</a></li>
-                <li><a href="infopic.html">内容页</a></li>
-            </ul>
-        </nav>
-    </header>
     <article>
         <aside>
             <div class="l_box">
                 <div class="about_me">
                     <h2>关于我</h2>
                     <ul>
-                    <i><img src="{{ user.icon }}"></i>
-                    <p><b>{{ user.name }}</b>{{ user.introduction }}</p>
+                        <i><img src="{{ user.icon }}"></i>
+                        <p><b>{{ user.name }}</b>{{ user.introduction }}</p>
 
 
-                </ul>
+                    </ul>
                 </div>
                 <div class="wdxc">
                     <h2>我的相册</h2>
@@ -51,16 +37,15 @@
                 </div>
             </div>
         </aside>
-        <div class="r_box">
-            <ul class="about">
-                {{ user.info | safe }}
 
-            </ul>
-        </div>
+        <main class="r_box">
+            <div class="about">
+
+                {{ user.info | safe }}
+            </div>
+        </main>
+
     </article>
     <footer>
-        <p>Design by <a href="http://www.yangqq.com" target="_blank">杨青个人博客</a> <a href="/">蜀ICP备11002373号-1</a></p>
-    </footer>
-    <a href="#" class="cd-top">Top</a>
-{% endblock %}
 
+{% endblock %}

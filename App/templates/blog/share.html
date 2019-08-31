@@ -10,46 +10,35 @@
 
 {% block content %}
 
-    <header class="header-navigation" id="header">
-        <nav>
-            <div class="logo"><a href="/">杨青个人博客</a></div>
-            <h2 id="mnavh"><span class="navicon"></span></h2>
-            <ul id="starlist">
-                <li><a href="index.html">网站首页</a></li>
-                <li><a href="share.html">我的相册</a></li>
-                <li><a href="list.html">我的日记</a></li>
-                <li><a href="about.html">关于我</a></li>
-                <li><a href="gbook.html">留言</a></li>
-                <li><a href="info.html">内容页</a></li>
-                <li><a href="infopic.html">内容页</a></li>
-            </ul>
-        </nav>
-    </header>
+
     <article>
         <div class="picbox">
-
-
-            {% for photo in photos %}
+            {% for foo in phage.items %}
                 <ul>
-
-                    <li data-scroll-reveal="enter bottom over 1s"><a href="/"><i><img src="{{ photo.picture }}"></i>
-                        <div class="picinfo">
-                            <h3>{{ photo.title }}</h3>
-                            <span>{{ photo.info }}</span></div>
-                    </a></li>
+                    <li data-scroll-reveal="enter bottom over 1s">
+                        <a href="{{ url_for('blog.infopic', id=foo.id) }}">
+                            <i><img src="{{ foo.picture }}"></i>
+                            <div class="picinfo">
+                                <h3>{{ foo.title }}</h3>
+                                <span>{{ foo.info }}</span></div>
+                        </a></li>
                 </ul>
-
             {% endfor %}
 
+
         </div>
-        <div class="pagelist"><a class="allpage"><b>99</b></a>&nbsp;&nbsp;<a href="#"
-                                                                             class="curPage">1</a>&nbsp;&nbsp;<a
-                href="#" onclick="page(2)">2</a>&nbsp;&nbsp;<a href="#" onclick="page(3)">3</a>&nbsp;&nbsp;<a href="#"
-                                                                                                              onclick="page(4)">4</a>&nbsp;&nbsp;<a
-                href="#" onclick="page(5)">5</a>&nbsp;&nbsp;<a href="#" onclick="page(6)">6</a>&nbsp;&nbsp;<a href="#"
-                                                                                                              onclick="page(7)">7</a>&nbsp;&nbsp;<a
-                href="#" onclick="page(8)">8</a>&nbsp;&nbsp;<a href="#" onclick="page(9)">9</a>&nbsp;&nbsp;<a href="#"
-                                                                                                              onclick="page(2)">下一页</a>
+        <div class="pagelist"><a class="allpage"><b>{{ phage.total }}</b></a>&nbsp;&nbsp;
+
+            {% for phage in phage.iter_pages() %}
+                <a href="{{ url_for('blog.share') }}?page={{ phage }}"
+                   class="curPage">{{ phage }}</a>&nbsp;&nbsp;
+            {% endfor %}
+
+            {% if phage.has_next %}
+                <a href="{{ url_for('blog.share') }}?page={{ phage.next_num }}" onclick="">下一页</a>
+
+            {% endif %}
+            &nbsp;
         </div>
     </article>
     <footer>

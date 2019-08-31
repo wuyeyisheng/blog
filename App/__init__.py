@@ -2,9 +2,18 @@ from flask import Flask
 from .views import blog, admin
 from .exts import init_exts
 
+from flask_caching import Cache
+
+
 
 def create_app():
     app = Flask(__name__)
+
+
+    app.config['SECRET_KEY']='qwertyuiopasdfghjklzxcvbnm,./·1234567890-='
+
+
+
 
     # 配置数据库
     db_uri = 'mysql+pymysql://root:123456@localhost:3306/blog'
