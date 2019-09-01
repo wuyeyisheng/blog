@@ -146,8 +146,11 @@ def info(id):
 
 @blog.route("/yzm/")
 def yzm():
-    num = random.choices("0123456789qwertyuiopasdfghjklzxcvbnm", k=4)
-    return jsonify({"code": 1, "yzm": "".join(num)})
+    tmp = "0123456789qwertyuiopasdfghjklzxcvbnm"
+    num = ""
+    for i in range(4):
+        num += random.choice(tmp)
+    return jsonify({"code": 1, "yzm": num})
 
 
 @blog.route("/share/")
